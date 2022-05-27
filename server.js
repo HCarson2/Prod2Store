@@ -7,6 +7,7 @@
 const express = require('express')
 const app = express()
 require('dotenv').config()
+//---Links env
 
 app.set('view engine', 'jsx');
 
@@ -17,7 +18,6 @@ app.use((req, res, next) => {
     next();
 });
 const homeData = require('./models/homes')
-//----------------Links
 
 // Welcome page
 app.get('', (req, res) => {
@@ -27,9 +27,12 @@ app.get('', (req, res) => {
 
 
 app.get('/homes', (req, res)=>{
-         res.send('homes')
+         res.send(homeData);
 });
-
+// add show route
+app.get('/homes/:indexOfHomesArray', (req, res)=>{
+    res.send(homeData[req.params.indexOfHomesArray]);
+});
 
 
 
