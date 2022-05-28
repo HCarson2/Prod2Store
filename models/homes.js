@@ -1,5 +1,5 @@
 const homes = [
-    {name: "Architects Dream", img: "https://thearchitectsdiary.com/wp-content/uploads/2020/06/Property-.jpg",
+    {name: "We are Family", img: "https://thearchitectsdiary.com/wp-content/uploads/2020/06/Property-.jpg",
      price: '$2,000,000',
      address: "Cincinnati, Oh"},
     {name: "A Day at The Office", img: "https://www.build-review.com/wp-content/uploads/2020/07/luxury-real-estate.jpg",

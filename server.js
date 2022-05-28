@@ -1,7 +1,7 @@
 // --------Install NPM packages---------
 // npm init -y
 // npm i express nodemon dotenv
-//npm i express-react-views react@16 react-dom@16
+//npm i express-react-views react@16 react-dom@16 --save
 
 //------Server Set-up---------
 const express = require('express')
