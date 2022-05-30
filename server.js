@@ -23,15 +23,20 @@ const homeData = require('./models/homes')
 app.get('', (req, res) => {
     res.send('Welcome To <br><br>HEY HOMES')
 });
-
-
-
 app.get('/homes', (req, res)=>{
-         res.send(homeData);
+    res.render("Index", {homes: homeData})
+})
+app.get('/homes', (req, res)=>{
+     res.send('homes')
+ })
+ //put this above your Show route
+app.get('/homes/new', (req, res) => {
+    res.render('New');
 });
-// add show route
+
+// Add show route
 app.get('/homes/:indexOfHomesArray', (req, res)=>{
-    res.send(homeData[req.params.indexOfHomesArray]);
+    res.render("show",{homes: homeData[req.params.indexOfHomesArray]});
 });
 
 

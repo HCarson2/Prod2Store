@@ -1,20 +1,20 @@
-const React = require('react')
+const React = require('react');
 
 class Show extends React.Component {
     render () {
         const homes = this.props.homes;
-        homes.img.includes('.jpg')? homes.img: homes.img += '.jpg';
+        homes.img.includes('.jpg'),('.jpeg')? homes.img: homes.img += '.jpg';
         console.log(homes.img)
         return(
             <>
                 <h1> We Have your New Home </h1>
-                <h2>
-                    {homes.name} <br></br>
+                <h3>
+                    {homes.name}<br></br>{homes.price}<br></br>{homes.address}
                     <img src={homes.img}></img>
-                </h2>
+                </h3>
                 <a href={'/homes'}>Back</a>
             </>       
         );
     }
 }
-module.exportsm = Show;
+module.exports = Show;
