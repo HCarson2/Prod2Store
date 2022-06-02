@@ -4,41 +4,79 @@
 //npm i express-react-views react@16 react-dom@16 --save
 
 //------Server Set-up---------
+const mongoose = require('mongoose')
 const express = require('express')
 const app = express()
-require('dotenv').config()
+const Parcel = require('./models/homes');
+// const realEstate = require('../models/realEstateModel')
+// const mongoose = require('mongoose');
+
+// const perScholas = mongoose
+// .connect(process.env.DATABASE.replace("<password>",process.env.PASSWORD), {
+//         useCreateIndex: true,
+//         useNewUrlParser: true,
+//         useFindAndModify: false,
+//         useUnifiedTopology: true,
+//       })
+// .then(()=>{
+//     console.log("DATABASE IS UP AND RUNNING")
+
+// });
+
+
+//... and then farther down the file
+
+// mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+// mongoose.connection.once('open', ()=> {
+//     console.log('connected to mongo');
+// });
 //---Links env
+require('dotenv').config()
 
 app.set('view engine', 'jsx');
 
 app.engine('jsx', require('express-react-views').createEngine());
 
+// ---Middleware---
+//near the top, around other app.use() calls
+app.use(express.urlencoded({extended:false}));
+
 app.use((req, res, next) => {
     console.log('I run all routes');
     next();
 });
-const homeData = require('./models/homes')
+const houseData = require('./models/homes');
+
 
 // Welcome page
 app.get('', (req, res) => {
-    res.send('Welcome To <br><br>HEY HOMES')
-});
+    res.render('Welcome')
+});//--Index route--
 app.get('/homes', (req, res)=>{
-    res.render("Index", {homes: homeData})
+    res.render('Index', {Parcel: houseData})
 })
-app.get('/homes', (req, res)=>{
-     res.send('homes')
- })
- //put this above your Show route
-app.get('/homes/new', (req, res) => {
+
+ // --New Product/route--(Shows a Form page)
+app.get('/homes/new', (req, res)=>{
     res.render('New');
 });
-
-// Add show route
-app.get('/homes/:indexOfHomesArray', (req, res)=>{
-    res.render("show",{homes: homeData[req.params.indexOfHomesArray]});
+//--Show Route--(Show individual Product)
+app.get('/homes/:id', (req, res)=>{
+    res.render('Show', {Parcel: houseData[req.params.id]});
 });
+//--Delete Route--
+// app.delete('/homes:id/delete', (req, res)=>{
+//     console.log(req.params.id)
+//     let Parcel = await Parcel.findById(req, params.id)
+//     Parcel = req.body
+// })
 
+//--Product Post Route--(Submit create Form)
+app.post('/homes', (req, res)=>{
+    Parcel.push(req.body);
+    console.log(houseData);
+    res.redirect('homes'); //send the user back to /homes
+});
 
 
 

@@ -1,19 +1,29 @@
 const React = require('react');
+//--My styling--
+const myColor = {backgroundColor: "#DEEDC9"};
 
 class New extends React.Component {
   render() {
     return (
-        <div>
+        <div> 
+          <body style={myColor}>
+            
+    <nav>
+    <button><a href={'/homes'}>Homes/Inventory</a></button>||||
+    <button><a href={'/edit'}>Edit Homes Form</a></button>
+    </nav>
+
             <h1>Add New Home Form</h1>
-            {/* NOTE: action will be the route, method will be the HTTP verb */}
-            <form action="/homes" method="POST">
-              Name:      <input type="text" name="Name" /><br/>
-              Price:     <input type="text" name="Price" /><br/>
-              Address:   <input type="text" name="Address" /><br/>
-              Image URL: <input type="url" name= "Url" />
-              <input type="submit" name="" value="Create Home"/>
+            <form action="/homes" method='POST'>
+              Real Name: <input type="text" name='name' placeholder='type..'></input><br />
+              Real Price: <input type="text" name='price' placeholder='cost..'></input><br />
+              Real address: <input type="text" name='address' placeholder='address'></input><br />
+              Real URL: <input type="text" name="img" placeholder='url'></input><br />
+              <input type="submit" name='' value ="Create New Home"/>
             </form>
-        </div>);
+            </body>
+        </div>
+        );
     }
   }
 
